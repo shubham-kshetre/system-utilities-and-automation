@@ -1,13 +1,13 @@
 CPU Details:
-idle time of CPU 13:03:21
+idle time of CPU 02:46:07
 CPU usage: 0.0
 
 Virtual Memory Details:
 Total virtual memory: 5803.15 MB
-Available virtual memory: 853.94 MB
-Used virtual memory: 4608.4 MB
-Free virtual memory: 190.48 MB
-Cached virtual memory: 990.0 MB
+Available virtual memory: 1730.74 MB
+Used virtual memory: 3755.65 MB
+Free virtual memory: 115.21 MB
+Cached virtual memory: 1896.33 MB
 
 Swap memory Details
 Total Swap memory: 0.0 MB

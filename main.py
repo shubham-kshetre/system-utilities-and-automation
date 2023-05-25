@@ -29,7 +29,16 @@ def write_to_file():
         f.write("Swap memory Details\n")
         f.write(f"Total Swap memory: {total_swap_memory} MB\n")
         f.write(f"Used swap memory: {used_swap_memory} MB\n")
-
+        
+def read_file():
+    try:
+        with open("system_utilities.txt", "r") as f:
+            content = f.read()
+            print(content)
+    except FileNotError:
+        print("File not Found!")
+    except IOError:
+        print("File reading error")
 
 def cpu_info():
     cpu_usage = psutil.cpu_percent()
@@ -64,19 +73,4 @@ def swap_memory_info():
 
 if __name__=="__main__":
     write_to_file()
-    print("CPU Details:")
-    print(f"idle time of CPU {convert_to_time(idle_time)}")
-    print(f"CPU usage: {cpu_usage}\n")
-
-    # Print the virtual memory usage information
-    print("Virtual Memory Details:")
-    print("Total virtual memory:", total_memory, "MB")
-    print("Available virtual memory:", available_memory, "MB")
-    print("Used virtual memory:", used_memory, "MB")
-    print("Free virtual memory:", free_memory, "MB")
-    print("Cached virtual memory:", cached_memory, "MB\n")
-
-    # Print the virtual memory usage information
-    print("Swap memory Details")
-    print("Total Swap memory:", total_swap_memory, "MB")
-    print("Used swap memory:", used_swap_memory, "MB")
+    read_file()
