@@ -28,14 +28,26 @@ def write_to_file():
 
         f.write("Swap memory Details\n")
         f.write(f"Total Swap memory: {total_swap_memory} MB\n")
-        f.write(f"Used swap memory: {used_swap_memory} MB\n")
+        f.write(f"Used swap memory: {used_swap_memory} MB\n\n")
+
+        partitions = disk_space_info()
+        for partition in partitions:
+            f.write(f"Device: {partition.device}\n")
+            f.write(f"Mountpoint: {partition.mountpoint}\n")
+            f.write(f"File System Type: {partition.fstype}\n")
+            f.write(f"Options: {partition.opts}\n\n")
+
+        disk_usage_dict = get_disk_usage('/')
+        # f.write(f"Total size of the disk: {}")
+        for i, j in disk_usage_dict.items():
+            f.write(f"{i}: {j}\n")
         
 def read_file():
     try:
         with open("system_utilities.txt", "r") as f:
             content = f.read()
             print(content)
-    except FileNotError:
+    except FileNotFoundError:
         print("File not Found!")
     except IOError:
         print("File reading error")
@@ -70,6 +82,24 @@ def swap_memory_info():
     used_swap_memory = round(swap_info.used / (1024 * 1024), 2)
 
     return total_swap_memory, used_swap_memory
+
+def disk_space_info():
+
+    return psutil.disk_partitions()
+
+def get_disk_usage(path):
+    disk_usage = psutil.disk_usage(path)
+    total_size = disk_usage.total
+    used_size = disk_usage.used
+    free_size = disk_usage.free
+    usage_percent = disk_usage.percent
+
+    return {
+        'total size': total_size,
+        'used size': used_size,
+        'free size': free_size,
+        'disk usage percent': usage_percent
+    }
 
 if __name__=="__main__":
     write_to_file()
